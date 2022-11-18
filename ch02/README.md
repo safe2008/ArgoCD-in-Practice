@@ -1,0 +1,18 @@
+```
+kind create cluster --config=kind.yaml --name=ch02
+kubectl cluster-info --context kind-ch02
+
+helm repo  add argo https://argoproj.github.io/argo-helm
+kubectl create ns  argocd
+helm install ch02 -n argocd argo/argo-cd
+
+kubectl port-forward service/ch02-argocd-server -n argocd 8080:443
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
+
+kubectl apply -f argo-app/
+
+argocd login localhost:8080
+mDH-5AqvroDPSiJq
+```
