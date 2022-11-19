@@ -19,8 +19,8 @@ spec:
                 name: argocd-server	
                 port:	
                   number: 443	
-            path: /argocd	
-            pathType: Prefix
+            path: /	
+            pathType: ImplementationSpecific
   tls:
   - secretName: https-cert
     hosts:
