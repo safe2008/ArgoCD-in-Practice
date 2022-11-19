@@ -11,3 +11,9 @@ spec:
           env:
             - name: ARGOCD_API_SERVER_REPLICAS
               value: '3'
+          # Run argocd-server in "insecure" mode to allow ingress to do TLS.
+          command:
+          - argocd-server
+          - --insecure
+          - --staticassets
+          - /shared/app
