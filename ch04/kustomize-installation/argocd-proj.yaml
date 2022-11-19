@@ -17,4 +17,4 @@ spec:
     - namespace: argocd
       server: https://kubernetes.default.svc
   sourceRepos:
-    - https://github.com/PacktPublishing/ArgoCD-in-Practice.git
+    - https://github.com/safe2008/ArgoCD-in-Practice.git

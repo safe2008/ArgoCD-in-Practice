@@ -7,7 +7,7 @@ spec:
     - matrix:
         generators:
           - git:
-              repoURL: https://github.com/PacktPublishing/ArgoCD-in-Practice.git
+              repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
               revision: HEAD
               directories:
                 - path: ch05/applications/*
@@ -25,7 +25,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/PacktPublishing/ArgoCD-in-Practice.git
+        repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
         targetRevision: HEAD
         path: "{{path}}"
       destination:

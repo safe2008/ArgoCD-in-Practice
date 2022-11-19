@@ -18,7 +18,7 @@ spec:
   - group: ''
     kind: NetworkPolicy
   sourceRepos:
-  - https://github.com/PacktPublishing/ArgoCD-in-Practice.git
+  - https://github.com/safe2008/ArgoCD-in-Practice.git
   - https://github.com/spirosoik/argocd-rollouts-cicd.git
   roles:
   - name: team-admin
