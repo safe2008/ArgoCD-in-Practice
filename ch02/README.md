@@ -4,16 +4,26 @@ kubectl get pods -ns -A -o wide
 kubectl cluster-info --context k8s
 kind delete clusters k8s
 
-helm repo add argo https://argoproj.github.io/argo-helm
+helm repo add bitnami https://charts.bitnami.com/bitnami
+
+## LoadBalancer
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
+kubectl wait --namespace metallb-system --for=condition=ready pod --selector=app=metallb --timeout=90s
+
+## Ingress NGINX
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+
+cd ch03
+
 kubectl create ns argocd
-helm install argo-cd -n argocd argo/argo-cd
+kubens argocd
+kustomize build kustomize-installation | kubectl apply -f-
+
+kustomize build argo-app | kubectl apply -f-
 
 kubectl port-forward service/argocd-server -n argocd 8080:443
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.7/config/manifests/metallb-native.yaml
-
-cd ch03
 kubectl apply -f argocd-app.yaml -n argocd
 
 argocd login localhost:8080
