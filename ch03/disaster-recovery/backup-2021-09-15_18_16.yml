@@ -974,7 +974,7 @@ status:
     images:
     - ghcr.io/dexidp/dex:v2.27.0
     - haproxy:2.0.22-alpine
-    - quay.io/argoproj/argocd:v2.1.1
+    - quay.io/argoproj/argocd:v2.5.2
     - redis:6.2.4-alpine
   sync:
     comparedTo:
