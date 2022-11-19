@@ -10,18 +10,13 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
-  tls:
-    - hosts:
-      - boriphuth.trueddns.com:21583
-      secretName: argocd-ui-ingress-tls
   rules:
-    - host: boriphuth.trueddns.com:21583
-      http:
-        paths:
-        - pathType: Prefix
-          path: "/"
-          backend:
-            service:
-              name: argocd-server
-              port:
-                number: 8080
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/argocd"
+        backend:
+          service:
+            name: argocd-server
+            port:
+              number: 8080
