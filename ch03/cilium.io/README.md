@@ -1,5 +1,5 @@
 ```
-kind create cluster --config=kind-config.yaml
+kind create cluster --config=kind-config.yaml --name=k8s-cilium
 kubectl cluster-info --context kind-kind
 
 helm repo add cilium https://helm.cilium.io/
