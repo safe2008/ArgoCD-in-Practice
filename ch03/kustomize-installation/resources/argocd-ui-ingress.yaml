@@ -20,19 +20,7 @@ spec:
                 name: argocd-server	
                 port:
                   number: 443
-# spec:	
-#   rules:
-#     - host: boriphuth.trueddns.com
-#       http:	
-#         paths:	
-#           - backend:	
-#               service:	
-#                 name: argocd-server	
-#                 port:	
-#                   number: 443	
-#             path: /	
-#             pathType: ImplementationSpecific
-#   tls:
-#   - secretName: https-cert
-#     hosts:
-#     - boriphuth.trueddns.com
+  tls:
+  - secretName: https-cert
+    hosts:
+    - boriphuth.trueddns.com
