@@ -2,7 +2,7 @@
 kind create cluster --config=kind.yaml --name=k8s
 kubectl get pods -ns -A -o wide
 kubectl cluster-info --context k8s
-kind delete clusters sk8s
+kind delete clusters k8s
 
 helm repo add argo https://argoproj.github.io/argo-helm
 kubectl create ns argocd
