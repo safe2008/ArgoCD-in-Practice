@@ -9,14 +9,18 @@ metadata:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-spec:
+spec:	
   rules:
-  - http:
-      paths:
-      - backend:
-          serviceName: argocd-server
-          servicePort: https
-    host: localhost
+    - host: localhost
+      http:	
+        paths:	
+          - backend:	
+              service:	
+                name: argocd-server	
+                port:	
+                  number: 80	
+            path: /argocd	
+            pathType: Prefix
   tls:
   - secretName: https-cert
     hosts:
