@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
-    targetRevision: HEAD
+    targetRevision: main
     path: ch03/blue-green
 
   destination:
@@ -16,8 +16,5 @@ spec:
     server: https://kubernetes.default.svc
 
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
       - CreateNamespace=true
