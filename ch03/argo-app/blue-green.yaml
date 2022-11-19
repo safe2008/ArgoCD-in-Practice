@@ -5,14 +5,14 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: team
+  project: default
   source:
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
     targetRevision: HEAD
     path: ch03/blue-green
 
   destination:
-    namespace: team-blue-green
+    namespace: blue-green
     server: https://kubernetes.default.svc
 
   syncPolicy:
