@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: blue-green
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: team
+  source:
+    repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
+    targetRevision: HEAD
+    path: ch03/blue-green
+
+  destination:
+    namespace: team-blue-green
+    server: https://kubernetes.default.svc
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

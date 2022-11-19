@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ch03/kustomize-installation
+    path: ch03/argocd
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
     targetRevision: main
   syncPolicy:
