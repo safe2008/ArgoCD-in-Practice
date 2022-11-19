@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx
+  name: ingress-nginx
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -13,10 +13,10 @@ spec:
     syncOptions:
       - CreateNamespace=true
   destination:
-    namespace: nginx
+    namespace: ingress-nginx
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: ch03/nginx
+    path: ch03/ingress-nginx
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
     targetRevision: main
