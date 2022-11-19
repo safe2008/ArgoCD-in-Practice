@@ -4,7 +4,7 @@ kubectl get pods -ns -A -o wide
 kubectl cluster-info --context k8s
 kind delete clusters sk8s
 
-helm repo  add argo https://argoproj.github.io/argo-helm
+helm repo add argo https://argoproj.github.io/argo-helm
 kubectl create ns argocd
 helm install argo-cd -n argocd argo/argo-cd
 
