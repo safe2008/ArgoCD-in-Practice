@@ -10,6 +10,10 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
+  tls:
+    - hosts:
+      - argocd.boriphuth.trueddns.com
+      secretName: argocd-ui-ingress-tls
   rules:
   - http:
       paths:
