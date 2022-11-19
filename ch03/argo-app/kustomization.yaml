@@ -5,4 +5,4 @@ namespace: argocd
 resources:
   - metallb-app.yaml
   - argocd-app.yaml
-  - nginx-app.yaml
+  - ingress-nginx-app.yaml
