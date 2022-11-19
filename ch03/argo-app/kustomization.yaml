@@ -6,3 +6,4 @@ resources:
   - metallb-app.yaml
   - argocd-app.yaml
   - ingress-nginx-app.yaml
+  - cert-manager.yaml
