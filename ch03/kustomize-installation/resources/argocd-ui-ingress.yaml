@@ -12,7 +12,7 @@ metadata:
 spec:
   tls:
     - hosts:
-      - boriphuth.trueddns.com:21583
+      - boriphuth.trueddns.com
       secretName: argocd-ui-ingress-tls
   rules:
   - http:
