@@ -11,16 +11,17 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
   tls:
-    - hosts:
-      - boriphuth.trueddns.com
-      secretName: argocd-ui-ingress-tls
+  - hosts:
+    - boriphuth.trueddns.com
+    secretName: argocd-secret
   rules:
-  - http:
+  - host: localhost
+    http:
       paths:
-      - pathType: Prefix
-        path: "/argocd"
+      - path: "/argocd"
+        pathType: ImplementationSpecific
         backend:
           service:
             name: argocd-server
             port:
-              number: 8080
+              name: http
