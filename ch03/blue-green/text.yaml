@@ -7,12 +7,14 @@ metadata:
 spec:
   containers:
   - name: text-app
-    image: nginxdemos/hello:plain-text
+    # image: nginxdemos/hello:plain-text
     # image: paulbouwer/hello-kubernetes:1.10
+    image: stefanprodan/podinfo:latest
     imagePullPolicy: Always
     ports:
     - name: http
-      containerPort: 80
+      # containerPort: 80
+      containerPort: 9898
       protocol: TCP
 ---
 kind: Service
