@@ -12,22 +12,22 @@ metadata:
 spec:
   rules:
     - http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: argocd-server
-                port:
-                  number: 443
         # paths:
-        #   - path: /
-        #     pathType: ImplementationSpecific
+        #   - pathType: Prefix
+        #     path: "/"
         #     backend:
         #       service:
-        #         name: argocd-server	
+        #         name: argocd-server
         #         port:
         #           number: 443
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: argocd-server	
+                port:
+                  number: 443
   # tls:
   # - secretName: https-cert
   #   hosts:
