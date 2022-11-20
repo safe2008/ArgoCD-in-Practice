@@ -8,6 +8,15 @@ spec:
   containers:
   - name: foo-app
     image: hashicorp/http-echo:0.2.3
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 5678
+      protocol: TCP
+    resources:
+      requests:
+        memory: 32Mi
+        cpu: 5m
     args:
     - "-text=foo"
 ---
@@ -19,8 +28,10 @@ spec:
   selector:
     app: foo
   ports:
-  # Default port used by the image
-  - port: 5678
+  - port: 8080
+    targetPort: http
+    protocol: TCP
+    name: http
 ---
 kind: Pod
 apiVersion: v1
@@ -32,6 +43,15 @@ spec:
   containers:
   - name: bar-app
     image: hashicorp/http-echo:0.2.3
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 5678
+      protocol: TCP
+    resources:
+      requests:
+        memory: 32Mi
+        cpu: 5m
     args:
     - "-text=bar"
 ---
@@ -43,8 +63,10 @@ spec:
   selector:
     app: bar
   ports:
-  # Default port used by the image
-  - port: 5678
+  - port: 8080
+    targetPort: http
+    protocol: TCP
+    name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -60,12 +82,12 @@ spec:
           service:
             name: foo-service
             port:
-              number: 5678
+              number: 8080
       - pathType: Prefix
         path: "/bar"
         backend:
           service:
             name: bar-service
             port:
-              number: 5678
+              number: 8080
 ---
