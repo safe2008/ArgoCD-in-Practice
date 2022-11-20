@@ -7,11 +7,11 @@ metadata:
 spec:
   containers:
   - name: blue-app
-    image: spirosoik/ch06:v2.5.11
+    image: argoproj/rollouts-demo:slow-blue
     imagePullPolicy: Always
     ports:
     - name: http
-      containerPort: 3000
+      containerPort: 8080
       protocol: TCP
     resources:
       requests:
