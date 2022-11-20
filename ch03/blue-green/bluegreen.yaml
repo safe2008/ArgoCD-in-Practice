@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: blue-app
-    image: safe2008/podinfo:1.2.1
+    image: argoproj/rollouts-demo:blue
     imagePullPolicy: Always
     ports:
     - name: http
@@ -72,14 +72,14 @@ spec:
   rules:
   - http:
       paths:
-      - pathType: Prefix
-        path: "/blue"
+      - path: /blue
+        pathType: ImplementationSpecific
         backend:
           service:
             name: blue-service
             port:
               number: 8080
-      - pathType: Prefix
+      - pathType: Exact
         path: "/green"
         backend:
           service:
