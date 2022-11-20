@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: blue-app
-    image: hello:plain-text
+    image: nginxdemos/hello:plain-text
     imagePullPolicy: Always
     ports:
     - name: http
@@ -22,7 +22,7 @@ spec:
   selector:
     app: blue
   ports:
-  - port: 8080
+  - port: 80
     targetPort: http
     protocol: TCP
     name: http
@@ -41,4 +41,4 @@ spec:
           service:
             name: blue-service
             port:
-              number: 8080
+              number: 80
