@@ -31,6 +31,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
     - host: hello.boriphuth.trueddns.com
@@ -42,3 +48,7 @@ spec:
                 name: hello-service
                 port:
                   number: 80
+  tls:
+  - secretName: http-cert
+    hosts:
+    - hello.boriphuth.trueddns.com
