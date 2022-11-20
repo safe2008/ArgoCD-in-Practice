@@ -7,13 +7,11 @@ metadata:
 spec:
   containers:
   - name: text-app
-    # image: nginxdemos/hello:plain-text
-    image: argoproj/rollouts-demo:blue
+    image: nginxdemos/hello:plain-text
     imagePullPolicy: Always
     ports:
     - name: http
-      # containerPort: 80
-      containerPort: 8080
+      containerPort: 80
       protocol: TCP
 ---
 kind: Service
