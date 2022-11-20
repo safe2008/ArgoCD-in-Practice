@@ -11,3 +11,6 @@ resources:
 # - bluegreen.yaml
 - hello.yaml
 - text.yaml
+- rollout.yaml
+- service.yaml
+- ingress.yaml
