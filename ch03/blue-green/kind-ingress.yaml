@@ -1,50 +1,46 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: foo-app
+  name: blue-app
   labels:
-    app: foo
+    app: blue
 spec:
   containers:
-  - name: foo-app
-    image: hashicorp/http-echo:0.2.3
-    args:
-    - "-text=foo"
+  - name: blue-app
+    image: argoproj/rollouts-demo:blue
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: foo-service
+  name: blue-service
 spec:
   selector:
-    app: foo
+    app: blue
   ports:
   # Default port used by the image
-  - port: 5678
+  - port: 8080
 ---
 kind: Pod
 apiVersion: v1
 metadata:
-  name: bar-app
+  name: green-app
   labels:
-    app: bar
+    app: green
 spec:
   containers:
-  - name: bar-app
-    image: hashicorp/http-echo:0.2.3
-    args:
-    - "-text=bar"
+  - name: green-app
+    image: argoproj/rollouts-demo:green
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: bar-service
+  name: green-service
 spec:
   selector:
-    app: bar
+    app: green
   ports:
   # Default port used by the image
-  - port: 5678
+  - port: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -55,17 +51,17 @@ spec:
   - http:
       paths:
       - pathType: Prefix
-        path: "/foo"
+        path: "/blue"
         backend:
           service:
-            name: foo-service
+            name: blue-service
             port:
-              number: 5678
+              number: 8080
       - pathType: Prefix
-        path: "/bar"
+        path: "/green"
         backend:
           service:
-            name: bar-service
+            name: green-service
             port:
-              number: 5678
+              number: 8080
 ---
