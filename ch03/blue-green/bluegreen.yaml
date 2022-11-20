@@ -70,20 +70,31 @@ metadata:
   name: bluegreen-ingress
 spec:
   rules:
-  - http:
-      paths:
-      - path: /blue
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: blue-service
-            port:
-              number: 8080
-      - pathType: Exact
-        path: "/green"
-        backend:
-          service:
-            name: green-service
-            port:
-              number: 8080
+    - host: blue.boriphuth.trueddns.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: blue-service
+                port:
+                  number: 8080
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /blue
+#         pathType: ImplementationSpecific
+#         backend:
+#           service:
+#             name: blue-service
+#             port:
+#               number: 8080
+#       - pathType: Exact
+#         path: "/green"
+#         backend:
+#           service:
+#             name: green-service
+#             port:
+#               number: 8080
 ---

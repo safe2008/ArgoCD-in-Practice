@@ -29,4 +29,8 @@ kubectl apply -f argocd-app.yaml -n argocd
 
 argocd login localhost:8080
 mDH-5AqvroDPSiJq
+
+docker container inspect k8s-control-plane --format '{{ .NetworkSettings.Networks.kind.IPAddress }}'
+172.18.0.8
+
 ```
