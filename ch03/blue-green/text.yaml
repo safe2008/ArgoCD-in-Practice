@@ -23,7 +23,7 @@ spec:
   selector:
     app: text
   ports:
-  - port: 80
+  - port: 8080
     targetPort: http
     protocol: TCP
     name: http
@@ -42,4 +42,4 @@ spec:
           service:
             name: text-service
             port:
-              number: 80
+              number: 8080
