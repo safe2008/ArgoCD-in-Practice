@@ -8,7 +8,7 @@ spec:
   containers:
   - name: text-app
     # image: nginxdemos/hello:plain-text
-    image: paulbouwer/hello-kubernetes:1.10
+    image: argoproj/rollouts-demo:blue
     imagePullPolicy: Always
     ports:
     - name: http
