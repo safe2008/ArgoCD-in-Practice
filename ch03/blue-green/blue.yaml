@@ -7,11 +7,11 @@ metadata:
 spec:
   containers:
   - name: blue-app
-    image: paulbouwer/hello-kubernetes:1.10
+    image: hello:plain-text
     imagePullPolicy: Always
     ports:
     - name: http
-      containerPort: 8080
+      containerPort: 80
       protocol: TCP
 ---
 kind: Service
