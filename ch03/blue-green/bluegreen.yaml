@@ -7,9 +7,16 @@ metadata:
 spec:
   containers:
   - name: blue-app
-    image: hashicorp/http-echo:0.2.3
-    args:
-    - "-text=blue"
+    image: argoproj/rollouts-demo:blue
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+      protocol: TCP
+    resources:
+      requests:
+        memory: 32Mi
+        cpu: 5m
 ---
 kind: Service
 apiVersion: v1
@@ -19,8 +26,10 @@ spec:
   selector:
     app: blue
   ports:
-  # Default port used by the image
-  - port: 5678
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
 ---
 kind: Pod
 apiVersion: v1
@@ -31,9 +40,16 @@ metadata:
 spec:
   containers:
   - name: green-app
-    image: hashicorp/http-echo:0.2.3
-    args:
-    - "-text=green"
+    image: argoproj/rollouts-demo:green
+    imagePullPolicy: Always
+    ports:
+    - name: http
+      containerPort: 8080
+      protocol: TCP
+    resources:
+      requests:
+        memory: 32Mi
+        cpu: 5m
 ---
 kind: Service
 apiVersion: v1
@@ -43,8 +59,10 @@ spec:
   selector:
     app: green
   ports:
-  # Default port used by the image
-  - port: 5678
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -60,12 +78,12 @@ spec:
           service:
             name: blue-service
             port:
-              number: 5678
+              number: 80
       - pathType: Prefix
         path: "/green"
         backend:
           service:
             name: green-service
             port:
-              number: 5678
+              number: 80
 ---

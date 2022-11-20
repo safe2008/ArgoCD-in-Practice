@@ -7,5 +7,5 @@ resources:
 - bluegreen-ingress.yaml
 - bluegreen-preview-service.yaml
 - bluegreen-preview-ingress.yaml
-- kind-ingress.yaml
+# - kind-ingress.yaml
 - bluegreen.yaml
