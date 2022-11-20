@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
   - name: hello-app
-    image: nginxdemos/hello:plain-text
+    image: nginxdemos/hello:latest
     imagePullPolicy: Always
     ports:
     - name: http
