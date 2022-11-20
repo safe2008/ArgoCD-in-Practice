@@ -7,12 +7,11 @@ metadata:
 spec:
   containers:
   - name: hello-app
-    # image: nginxdemos/hello:latest
-    image: paulbouwer/hello-kubernetes:1.10
+    image: nginxdemos/hello:latest
     imagePullPolicy: Always
     ports:
     - name: http
-      containerPort: 8080
+      containerPort: 80
       protocol: TCP
 ---
 kind: Service

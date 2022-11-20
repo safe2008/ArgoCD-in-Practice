@@ -10,4 +10,4 @@ resources:
 # - kind-ingress.yaml
 # - bluegreen.yaml
 - hello.yaml
-- blue.yaml
+- text.yaml

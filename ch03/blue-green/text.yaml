@@ -1,13 +1,14 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: blue-app
+  name: text-app
   labels:
-    app: blue
+    app: text
 spec:
   containers:
-  - name: blue-app
+  - name: text-app
     image: nginxdemos/hello:plain-text
+    # image: paulbouwer/hello-kubernetes:1.10
     imagePullPolicy: Always
     ports:
     - name: http
@@ -17,10 +18,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: blue-service
+  name: text-service
 spec:
   selector:
-    app: blue
+    app: text
   ports:
   - port: 80
     targetPort: http
@@ -30,15 +31,15 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: blue-ing
+  name: text-ing
 spec:
   rules:
   - http:
       paths:
       - pathType: Prefix
-        path: "/blue"
+        path: "/text"
         backend:
           service:
-            name: blue-service
+            name: text-service
             port:
               number: 80
