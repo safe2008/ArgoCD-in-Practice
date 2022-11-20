@@ -79,6 +79,15 @@ spec:
                 name: blue-service
                 port:
                   number: 8080
+    - host: green.boriphuth.trueddns.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: green-service
+                port:
+                  number: 8080
 # spec:
 #   rules:
 #   - http:
