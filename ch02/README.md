@@ -33,4 +33,9 @@ mDH-5AqvroDPSiJq
 docker container inspect k8s-control-plane --format '{{ .NetworkSettings.Networks.kind.IPAddress }}'
 172.18.0.8
 
+kubectl run hello --expose --image nginxdemos/hello:plain-text --port 80
+kubectl create --filename ingress.yaml
+
+curl hello.boriphuth.trueddns.com
+
 ```

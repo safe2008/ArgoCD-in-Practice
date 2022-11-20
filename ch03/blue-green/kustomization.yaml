@@ -9,3 +9,4 @@ resources:
 - bluegreen-preview-ingress.yaml
 - kind-ingress.yaml
 - bluegreen.yaml
+- hello.yaml
