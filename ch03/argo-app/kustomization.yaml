@@ -9,3 +9,4 @@ resources:
   - ingress-nginx-app.yaml
   - cert-manager.yaml
   - blue-green.yaml
+  - canary.yaml
