@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: bluegreen-demo-preview-ingress
+  name: bluegreen-demo-preview
   annotations:
     kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/proxy-body-size: 100M
