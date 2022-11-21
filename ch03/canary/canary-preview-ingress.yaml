@@ -11,10 +11,17 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
   rules:
-  - host: canary-preview.192.168.1.54.nip.io
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: canary-demo-preview
-          servicePort: 80
+    - host: canary-demo-preview.192.168.1.54.nip.io
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: canary-demo-preview
+                port:
+                  number: 8080
+  tls:
+  - secretName: canary-demo-preview-cert
+    hosts:
+    - canary-demo-preview.192.168.1.54.nip.io
+
