@@ -10,26 +10,27 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules:
-    - http:
-        paths:
-          - path: /dashboard
-            pathType: Prefix
-            backend:
-              service:
-                name: argo-rollouts-dashboard
-                port:
-                  number: 3100
-  # - host: argo-rollouts.10.200.181.87.nip.io
-  #   http:
-  #     paths:
-  #     - backend:
-  #         service:
-  #           name: argo-rollouts-dashboard
-  #           port:
-  #             number: 3100
-  #       path: "/"
-  #       pathType: ImplementationSpecific
-  # tls:
-  # - hosts:
-  #   - argocd.10.200.181.87.nip.io
-  #   secretName:  wildcard-tools-credential
+  - host: argo-rollouts.100.77.161.102.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: argo-rollouts-dashboard
+            port:
+              number: 3100
+        path: "/"
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - argocd.100.77.161.102.nip.io
+    secretName:  wildcard-tools-credential
+
+    # - http:
+    #     paths:
+    #       - path: /dashboard
+    #         pathType: Prefix
+    #         backend:
+    #           service:
+    #             name: argo-rollouts-dashboard
+    #             port:
+    #               number: 3100
