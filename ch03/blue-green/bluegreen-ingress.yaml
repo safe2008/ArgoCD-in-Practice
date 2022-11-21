@@ -2,14 +2,26 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: bluegreen-demo
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    ingress.kubernetes.io/proxy-body-size: 100M
+    ingress.kubernetes.io/app-root: "/"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
   rules:
-  - http:
-      paths:
-      - pathType: Prefix
-        path: "/blue-green"
-        backend:
-          service:
-            name: bluegreen-demo
-            port:
-              number: 80
+    - host: bluegreen-demo.192.168.1.54.nip.io
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: bluegreen-demo
+                port:
+                  number: 8080
+  tls:
+  - secretName: bluegreen-demo-cert
+    hosts:
+    - bluegreen-demo.192.168.1.54.nip.io
+

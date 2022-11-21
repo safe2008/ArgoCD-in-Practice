@@ -17,11 +17,11 @@ spec:
     spec:
       containers:
       - name: bluegreen-demo
-        image: nginxdemos/hello:latest
+        image: argoproj/rollouts-demo:blue
         imagePullPolicy: Always
         ports:
         - name: http
-          containerPort: 80
+          containerPort: 8080
           protocol: TCP
         resources:
           requests:
