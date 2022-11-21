@@ -25,13 +25,3 @@ spec:
   - hosts:
     - argo-rollouts.192.168.1.54.nip.io
     secretName:  argo-rollouts-credential
-
-    # - http:
-    #     paths:
-    #       - path: /dashboard
-    #         pathType: Prefix
-    #         backend:
-    #           service:
-    #             name: argo-rollouts-dashboard
-    #             port:
-    #               number: 3100
