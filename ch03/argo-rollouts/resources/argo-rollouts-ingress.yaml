@@ -11,7 +11,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules:
-  - host: argo-rollouts.127.0.0.1.nip.io
+  - host: argo-rollouts.192.168.1.54.nip.io
     http:
       paths:
       - backend:
@@ -23,8 +23,8 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - argocd.127.0.0.1.nip.io
-    secretName:  wildcard-tools-credential
+    - argo-rollouts.192.168.1.54.nip.io
+    secretName:  argo-rollouts-credential
 
     # - http:
     #     paths:
