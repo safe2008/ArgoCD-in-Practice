@@ -3,7 +3,9 @@ kind: Kustomization
 namespace: argocd
 
 bases:
-  - github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=master
+  # - github.com/argoproj/argo-cd/manifests/ha/cluster-install?ref=master
+  - https://github.com/argoproj/argo-cd/blob/master/manifests/cluster-install/kustomization.yaml
+  # - https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.2/manifests/ha/install.yaml
 
 resources:
   - resources/namespace.yaml
