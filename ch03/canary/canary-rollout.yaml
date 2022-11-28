@@ -1,22 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: bluegreen-demo
-  labels:
-    app: bluegreen-demo
+  name: canary-demo
 spec:
-  replicas: 3
+  replicas: 5
   revisionHistoryLimit: 1
   selector:
     matchLabels:
-      app: bluegreen-demo
+      app: canary-demo
   template:
     metadata:
       labels:
-        app: bluegreen-demo
+        app: canary-demo
     spec:
       containers:
-      - name: bluegreen-demo
+      - name: canary-demo
         image: argoproj/rollouts-demo:blue
         imagePullPolicy: Always
         ports:
@@ -28,7 +26,14 @@ spec:
             memory: 32Mi
             cpu: 5m
   strategy:
-    blueGreen:
-      autoPromotionEnabled: false
-      activeService: bluegreen-demo
-      previewService: bluegreen-demo-preview
+    canary:
+      canaryService: canary-demo-preview
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}

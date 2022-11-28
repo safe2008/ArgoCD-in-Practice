@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: bluegreen-demo
+  name: canary-demo
   annotations:
     kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/proxy-body-size: 100M
@@ -11,17 +11,17 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt-issuer"
 spec:
   rules:
-    - host: bluegreen-demo.192.168.1.54.nip.io
+    - host: canary-demo.192.168.1.54.nip.io
       http:
         paths:
           - pathType: ImplementationSpecific
             backend:
               service:
-                name: bluegreen-demo
+                name: canary-demo
                 port:
                   number: 8080
   tls:
-  - secretName: bluegreen-demo-cert
+  - secretName: canary-demo-cert
     hosts:
-    - bluegreen-demo.192.168.1.54.nip.io
+    - canary-demo.192.168.1.54.nip.io
 
