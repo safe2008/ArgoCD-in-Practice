@@ -12,6 +12,7 @@ brew install hashicorp/tap/terraform
 rm .terraform.lock.hcl
 terraform init -upgrade
 terraform plan -out=plan.out
+terraform plan –out=plan.out -var=zone_id=Z03127311NGE71PL2C1QK
 terraform apply plan.out
 
 ## k8s
