@@ -34,7 +34,7 @@ variable "domain" {
 }
 
 variable "zone_id" {
-  default     = "Z03127311NGE71PL2C1XX"
+  default     = "Z03127311NGE71PL2C1QK"
   description = "The ID of Route53 hosted zone"
 }
 
