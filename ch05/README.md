@@ -3,7 +3,12 @@
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install
-aws configue
+
+which aws
+/usr/local/bin/aws 
+aws --version
+
+aws configure
 
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
