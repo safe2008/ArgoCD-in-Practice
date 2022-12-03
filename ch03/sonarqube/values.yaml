@@ -1,4 +1,5 @@
 sonarqube:
+  edition: "enterprise"
   ingress:
     enabled: true
     hosts:
