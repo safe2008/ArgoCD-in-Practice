@@ -1,5 +1,7 @@
 sonarqube:
-  edition: "enterprise"
+  image:
+    repository: sonarqube
+    tag: 9.2.4-enterprise
   ingress:
     enabled: true
     hosts:
