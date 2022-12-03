@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sonarqube
+spec:
+  finalizers:
+    - kubernetes
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sonarqube
+spec:
+  project: default
+  source:
+    path: ch03/sonarqube
+    repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    namespace: sonarqube
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true

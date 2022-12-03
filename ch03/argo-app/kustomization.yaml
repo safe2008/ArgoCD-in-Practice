@@ -8,5 +8,6 @@ resources:
   - argo-rollouts.yaml
   - ingress-nginx-app.yaml
   - cert-manager.yaml
+  - sonarqube.yaml
   - blue-green.yaml
   - canary.yaml
