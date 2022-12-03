@@ -1,7 +1,7 @@
 apiVersion: v2
 name: sonarqube
-version: 9.7.1
+version: 6.2.0
 dependencies:
 - name: sonarqube
-  version: 9.7.1
+  version: 6.2.0
   repository: https://sonarsource.github.io/helm-chart-sonarqube
