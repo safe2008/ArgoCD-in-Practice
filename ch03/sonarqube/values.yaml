@@ -8,11 +8,11 @@ sonarqube:
       - name: sonarqube.192.168.1.54.nip.io
         path: "/"
     annotations:
+      kubernetes.io/ingress.class: nginx
       kubernetes.io/tls-acme: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: "8m"
       cert-manager.io/cluster-issuer: letsencrypt-issuer
       kubernetes.io/ingress.allow-http: "false"
-    ingressClassName: nginx
     tls:
     - secretName: sonarqube-tls
       hosts:
