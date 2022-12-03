@@ -23,7 +23,7 @@ locals {
       namespace: argocd
       server: https://kubernetes.default.svc
 
-    syncPolicy: 
+    syncPolicy:
       automated:
         prune: true
         selfHeal: true

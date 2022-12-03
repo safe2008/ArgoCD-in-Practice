@@ -23,18 +23,18 @@ variable "private_subnets" {
 }
 
 variable "cluster_name" {
-  default     = "packt-cluster"
+  default     = "k8s-cluster"
   description = "The name of EKS k8s cluster"
   type        = string
 }
 
 variable "domain" {
-  default     = "packtargocdbook.link"
+  default     = "boriphuth.tk"
   description = "The domain name for Route53. Change it to use your own"
 }
 
 variable "zone_id" {
-  default     = "Z06553931QSUA8NK1ZT1N"
+  default     = "Z03127311NGE71PL2C1QK"
   description = "The ID of Route53 hosted zone"
 }
 
