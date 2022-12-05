@@ -8,4 +8,6 @@ export POD_NAME=$(kubectl get pods --namespace sonarqube -l "app=sonarqube,relea
 echo "Visit http://127.0.0.1:8080 to use your application"
 kubectl port-forward $POD_NAME 8080:9000 -n sonarqube
 
+cat License.txt | base64
+
 ```
