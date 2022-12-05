@@ -1,8 +1,8 @@
 ## Getting Started Using Kind
 ```
-kind create cluster --config=kind-config.yaml --name=k8s-cilium
-kubectl cluster-info --context kind-k8s-cilium
-kind delete clusters k8s-cilium
+kind create cluster --config=kind-config.yaml --name=k8s
+kubectl cluster-info --context kind-k8s
+kind delete clusters k8s
 
 helm repo add cilium https://helm.cilium.io/
 helm repo update
@@ -10,10 +10,7 @@ helm repo update
 docker pull quay.io/cilium/cilium:v1.12.4
 kind load docker-image quay.io/cilium/cilium:v1.12.4
 
-helm install cilium cilium/cilium --version 1.12.4 \
-   --namespace kube-system \
-   --set image.pullPolicy=IfNotPresent \
-   --set ipam.mode=kubernetes
+helm install cilium cilium/cilium --version 1.12.4  --namespace kube-system  --set image.pullPolicy=IfNotPresent --set ipam.mode=kubernetes
 
 CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/master/stable.txt)
 CLI_ARCH=amd64
