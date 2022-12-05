@@ -1,8 +1,11 @@
+## Getting Started Using Kind
 ```
 kind create cluster --config=kind-config.yaml --name=k8s-cilium
-kubectl cluster-info --context k8s-cilium
+kubectl cluster-info --context kind-k8s-cilium
+kind delete clusters k8s-cilium
 
 helm repo add cilium https://helm.cilium.io/
+helm repo update
 
 docker pull quay.io/cilium/cilium:v1.12.4
 kind load docker-image quay.io/cilium/cilium:v1.12.4
@@ -12,13 +15,44 @@ helm install cilium cilium/cilium --version 1.12.4 \
    --set image.pullPolicy=IfNotPresent \
    --set ipam.mode=kubernetes
 
+CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/master/stable.txt)
+CLI_ARCH=amd64
+if [ "$(uname -m)" = "arm64" ]; then CLI_ARCH=arm64; fi
+curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/$CILIUM_CLI_VERSION/cilium-darwin-$CLI_ARCH.tar.gz{,.sha256sum}
+shasum -a 256 -c cilium-darwin-$CLI_ARCH.tar.gz.sha256sum
+sudo tar xzvfC cilium-darwin-$CLI_ARCH.tar.gz /usr/local/bin
+rm cilium-darwin-$CLI_ARCH.tar.gz{,.sha256sum}
+
+cilium status --wait
+cilium connectivity test
+## Enable Hubble in Cilium
+cilium hubble enable
+helm upgrade cilium cilium/cilium --version 1.12.4 \
+   --namespace kube-system \
+   --reuse-values \
+   --set hubble.relay.enabled=true \
+   --set hubble.ui.enabled=true
+
+export HUBBLE_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/hubble/master/stable.txt)
+HUBBLE_ARCH=amd64
+if [ "$(uname -m)" = "arm64" ]; then HUBBLE_ARCH=arm64; fi
+curl -L --fail --remote-name-all https://github.com/cilium/hubble/releases/download/$HUBBLE_VERSION/hubble-darwin-$HUBBLE_ARCH.tar.gz{,.sha256sum}
+shasum -a 256 -c hubble-darwin-$HUBBLE_ARCH.tar.gz.sha256sum
+sudo tar xzvfC hubble-darwin-$HUBBLE_ARCH.tar.gz /usr/local/bin
+rm hubble-darwin-${HUBBLE_ARCH}.tar.gz{,.sha256sum}
+cilium hubble port-forward&
+hubble status
+
+
+# Cluster Mesh
+
 ## https://dnsmichi.at/2022/03/11/new-zsh-theme-on-macos-powerlevel10k/
 ## https://piotrminkowski.com/2021/10/25/kubernetes-multicluster-with-kind-and-cilium/
 
 kind delete clusters c1
 kind delete clusters c2
 
-kind create cluster --name c1 --config kind-c1-config.yaml 
+kind create cluster --name c1 --config kind-c1-config.yaml
 kind create cluster --name c2 --config kind-c2-config.yaml
 
 kubectl config use-context kind-c1
