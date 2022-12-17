@@ -110,3 +110,19 @@ cilium connectivity test --context kind-c1 --multi-cluster kind-c2
 
 
 ```
+
+# https://www.middlewareinventory.com/blog/kubectl-cp-example/
+##  copy a file from local to pod
+```
+kubectl cp /<path-to-your-file>/<file-name> <pod-name>:<fully-qualified-file-name> -c <container-name>
+
+kubectl cp sonar-application-9.2.4.50792.jar sonarqube-sonarqube-0:/opt/sonarqube/lib/sonar-application-9.2.4.50792.jar -c sonarqube
+kubectl cp sonarlint-license-plugin-9.2.4.50792-all.jar sonarqube-sonarqube-0:/opt/sonarqube/lib/sonarlint/sonarlint-license-plugin-9.2.4.50792-all.jar -c sonarqube
+
+kubectl exec -it 
+```
+## copy a file from the pod to local
+```
+kubectl cp <pod-name>:<fully-qualified-file-name> /<path-to-your-file>/<file-name> -c <container-name>
+
+```

@@ -3,3 +3,5 @@
 **tfplan.json
 **tfplan
 ch03/sonarqube/License.txt
+ch03/sonarqube/lib/sonar-application-9.2.4.50792.jar
+ch03/sonarqube/lib/sonarlint/sonarlint-license-plugin-9.2.4.50792-all.jar
