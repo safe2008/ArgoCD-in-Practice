@@ -11,3 +11,4 @@ resources:
   - sonarqube.yaml
   - blue-green.yaml
   - canary.yaml
+  - falco.yaml
