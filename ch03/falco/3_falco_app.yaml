@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falco
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://falcosecurity.github.io/charts"
+    targetRevision: 1.16.3
+    chart: "falco"
+    helm:
+      values: |
+        # auditLog:
+        #   enabled: true
+        #   dynamicBackend:
+        #     enabled: true
+        customRules:
+          my-rules.yaml: |-
+            - macro: greetings
+              condition: >
+                proc.name = cowsay
+            - rule: Try to say use cowsay in Container
+              desc: Detect use of greetings command in container
+              condition: >
+                spawned_process and
+                container and
+                greetings
+              output: >
+                Cowsay command launched in container (user=%user.name user_loginuid=%user.loginuid command=%proc.cmdline parent_process=%proc.pname
+                container_id=%container.id container_name=%container.name image=%container.image.repository:%container.image.tag)
+              priority: NOTICE
+              tags: [dummy, process, demo]
+
+        fakeEventGenerator:
+          # set this to true if you want to see random message (a lot !)
+          enabled: false
+        falco:
+          priority: notice
+          jsonOutput: true
+          httpOutput:
+            enabled: true
+            url: http://falco-falcosidekick-ui:2802/
+        falcosidekick:
+          enabled: true
+          replicaCount: 1
+          webui:
+            enabled: true
+          config:
+            webhook:
+              address: https://webhook.site/09394a05-8277-4059-a9d4-44e4124908b4
+  destination:
+    namespace: falco
+    server: "https://kubernetes.default.svc"
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: false

@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: falcosidekick
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/instance: falco
+    app.kubernetes.io/name: falcosidekick
+spec:
+  jobLabel: falcosidekick
+  namespaceSelector:
+    # any: true
+    matchNames:
+    - falco
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: falco
+      app.kubernetes.io/name: falcosidekick
+  endpoints:
+  - port: http
+    interval: 15s
