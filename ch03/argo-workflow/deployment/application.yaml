@@ -12,7 +12,7 @@ spec:
   project: argo-workflow
   revisionHistoryLimit: 1
   source:
-    path: argo-workflow/resources
+    path: ch03/argo-workflow/resources
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
     targetRevision: master
   syncPolicy:

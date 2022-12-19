@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# echo " -- Install ArgoCD --"
-# kubectl create namespace argocd
-# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+echo " -- Install ArgoCD --"
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 echo ""
 echo " -- Install Argo Events --"
 kubectl create namespace argo-events

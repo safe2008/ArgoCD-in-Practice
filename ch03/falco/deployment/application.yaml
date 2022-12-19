@@ -16,7 +16,7 @@ spec:
       releaseName: falco
       valueFiles:
         - values.yaml
-    path: falco/resources
+    path: ch03/falco/resources
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
     targetRevision: master
   syncPolicy:
