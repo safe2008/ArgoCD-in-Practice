@@ -14,7 +14,7 @@ spec:
   source:
     path: ch03/argo-workflow/resources
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
-    targetRevision: master
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true

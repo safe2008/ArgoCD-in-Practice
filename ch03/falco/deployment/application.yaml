@@ -18,7 +18,7 @@ spec:
         - values.yaml
     path: ch03/falco/resources
     repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
-    targetRevision: master
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
