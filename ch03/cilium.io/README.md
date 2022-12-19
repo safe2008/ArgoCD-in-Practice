@@ -1,6 +1,6 @@
 ## Getting Started Using Kind
 ```
-kind create cluster --config=kind-config.yaml --name=k8s
+kind create cluster --config=kind.yaml --name=k8s
 kubectl cluster-info --context kind-k8s
 kind delete clusters k8s
 
