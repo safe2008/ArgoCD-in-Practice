@@ -12,7 +12,7 @@ spec:
     path: ch03/falco
 
   destination:
-    namespace: falco
+    namespace: monitoring
     server: https://kubernetes.default.svc
 
   syncPolicy:
