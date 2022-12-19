@@ -4,11 +4,4 @@ kind: Kustomization
 resources:
 - 0_namespaces.yaml
 - 1_crds/1-prometheus-operator-crds.yaml
-- 2_manifests/alertmanager
-- 2_manifests/blackbox-exporter
-- 2_manifests/kube-state-metrics
-- 2_manifests/node-exporter
-- 2_manifests/prometheus
-- 2_manifests/prometheus-adapter
-- 2_manifests/prometheusrule
-- 2_manifests/servicemonitor
+- 2_manifests
