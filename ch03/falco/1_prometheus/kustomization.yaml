@@ -3,5 +3,5 @@ kind: Kustomization
 
 resources:
 - 0_namespaces.yaml
-- 1_crds/1-prometheus-operator-crds.yaml
+# - 1_crds/1-prometheus-operator-crds.yaml
 - 2_manifests

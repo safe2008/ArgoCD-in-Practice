@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- 0_default_proj.yaml
+# - 0_default_proj.yaml
 - 1_prometheus
 - 2_grafana_app.yaml
 - 3_falco_app.yaml

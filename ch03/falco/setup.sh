@@ -2,8 +2,8 @@
 
 set -eu -o pipefail
 
-echo "+ setup argocd project"
-kubectl apply -f 0_default_proj.yaml
+# echo "+ setup argocd project"
+# kubectl apply -f 0_default_proj.yaml
 
 echo "+ setup prometheus monitoring"
 cd 1_prometheus
