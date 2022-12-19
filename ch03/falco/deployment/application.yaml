@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  name: falco
+  namespace: argocd
+spec:
+  destination:
+    namespace: falco
+    server: https://kubernetes.default.svc
+  project: falco
+  revisionHistoryLimit: 1
+  source:
+    helm:
+      releaseName: falco
+      valueFiles:
+        - values.yaml
+    path: falco/resources
+    repoURL: https://github.com/safe2008/ArgoCD-in-Practice.git
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
